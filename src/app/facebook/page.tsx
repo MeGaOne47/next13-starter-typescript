@@ -1,5 +1,6 @@
 'use client'
 import { useRouter } from 'next/navigation'
+import { Button } from 'react-bootstrap';
 
 const Facebook = () => {
 
@@ -8,11 +9,19 @@ const Facebook = () => {
         // alert(" Trở về trang chủ");
         router.push('/')
     }
+
+    const handleBtnAdmin = () => {
+        // alert(" Trở về trang admin");
+        router.push('/admin/hoidanit')
+    }
     return (
         <div>
             Facebook
             <div>
-                <button onClick={ () => handleBtn()}> Back Home</button>
+
+                <Button variant='danger' onClick={ () => handleBtnAdmin()}>Hỏi dân it</Button>
+
+                <Button variant='warning' onClick={ () => handleBtn()}> Back Home</Button>
             </div>
         </div>
         
