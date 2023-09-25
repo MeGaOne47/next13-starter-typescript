@@ -1,12 +1,14 @@
 import Link from 'next/link'
+import x from '@/styles/app.module.css'
+import y from '@/styles/hoidanit.module.css'
 
 export default function Home() {
     return (
       <div>
-          <ul>
-          <li>
+          <ul >
+          <li className={x['red']} style={{margin: "20px 0"}}>
             <Link href={"/facebook"}>
-                Facebook
+                <span className={y['red']}> Facebook </span>
             </Link>
           </li>
           <li style={{margin: "20px 0"}}>
@@ -14,12 +16,12 @@ export default function Home() {
                   TikTok
               </a>  
           </li>
-          <li style={{margin: "20px 0"}}>
+          <li  style={{margin: "20px 0"}}>
               <a href="/youtube">
                   YouTube
               </a>
           </li>
-          <li style={{margin: "20px 0"}}>
+          <li  style={{margin: "20px 0"}}>
               <a href="/twitter">
                   Twitter
               </a>
