@@ -1,3 +1,5 @@
+'use client'
+
 const Youtube = () => {
     return (
         <div>
