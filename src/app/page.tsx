@@ -5,6 +5,8 @@ import y from '@/styles/hoidanit.module.css'
 import AppTable from '@/components/app.table'
 import { useEffect } from 'react'
 import useSWR from "swr";
+import Spinner from 'react-bootstrap/Spinner';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 export default function Home() {
 
@@ -21,35 +23,17 @@ export default function Home() {
       }
     );
     if (!data) {
-      return <div>loading...</div>
+      // return <div>loading...</div>
+      const now = 60;
+      return <ProgressBar now={now} label={`${now}%`} />;
     }
   
     return (
       <div>
-        <div>{data?.length}</div>
-        <ul >
-          <li className={x['red']} style={{margin: "20px 0"}}>
-            <Link href={"/facebook"}>
-                <span className={y['red']}> Facebook </span>
-            </Link>
-          </li>
-          <li style={{margin: "20px 0"}}>
-              <a href="/tiktok">
-                  TikTok
-              </a>  
-          </li>
-          <li  style={{margin: "20px 0"}}>
-              <a href="/youtube">
-                  YouTube
-              </a>
-          </li>
-          <li  style={{margin: "20px 0"}}>
-              <a href="/twitter">
-                  Twitter
-              </a>
-          </li>
-        </ul>
-        <AppTable blogs={data}/>
+
+        <AppTable 
+          blogs={data?.sort((a: any, b: any) => b.id - a.id)}
+        />
       </div>
     )
   }

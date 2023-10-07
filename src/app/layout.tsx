@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import AppHeader from '@/components/app.header';
 import AppFooter from '@/components/app.footer';
 import { Container } from 'react-bootstrap';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,15 +22,25 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* <header style={{margin: "20px 0px"}}>Đầu trang</header> */}
         <AppHeader />
 
-        <Container>
+        <Container style={{ minHeight: 'calc(100vh - 106px)' }}>
           {children}
         </Container>
         
-        {/* <footer style={{margin: "20px 0px"}}>Chân trang</footer> */}
         <AppFooter/>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </body>
     </html>
   )
