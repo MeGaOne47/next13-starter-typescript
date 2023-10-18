@@ -7,6 +7,8 @@ import { useEffect } from 'react'
 import useSWR from "swr";
 import Spinner from 'react-bootstrap/Spinner';
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import Login from './login/page'
+import Register from './register/page'
 
 export default function Home() {
 
@@ -23,14 +25,17 @@ export default function Home() {
       }
     );
     if (!data) {
-      // return <div>loading...</div>
-      const now = 60;
-      return <ProgressBar now={now} label={`${now}%`} />;
+      return (
+          <div>
+              {/* <Login/> */}
+              {/* <Register/> */}
+              loading AppTable...
+          </div>
+      )  
     }
-  
+
     return (
       <div>
-
         <AppTable 
           blogs={data?.sort((a: any, b: any) => b.id - a.id)}
         />

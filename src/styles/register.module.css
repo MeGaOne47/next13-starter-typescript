@@ -1,0 +1,20 @@
+.Container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.Card {
+  width: 90%; /* Điều chỉnh chiều rộng thẻ Card */
+  max-width: 300px; /* Điều chỉnh chiều rộng tối đa */
+}
+
+.CardImage {
+  max-width: 100%;
+}
+
+.RegisterButton {
+  display: flex;
+  justify-content: center;
+}
