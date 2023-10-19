@@ -16,7 +16,7 @@ export default function Home() {
     .then((res) => res.json());
 
     const { data, error, isLoading } = useSWR(
-      "http://localhost:8000/blogs",
+      "https://8000-megaone47-backendfakejs-1ls4m8017ml.ws-us105.gitpod.io/blogs",
       fetcher,
       {
         revalidateIfStale: false,
