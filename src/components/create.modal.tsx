@@ -32,7 +32,7 @@ function CreateModal(props: IProps) {
             toast.error("Not empty content !")
             return;
         }
-        fetch('https://8000-megaone47-backendfakejs-1ls4m8017ml.ws-us105.gitpod.io/blogs', {
+        fetch('http://localhost:8000/blogs', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
@@ -44,7 +44,7 @@ function CreateModal(props: IProps) {
                 if (res) {
                     toast.success("Create new blog succeed !");
                     handleCloseModal();
-                    mutate("https://8000-megaone47-backendfakejs-1ls4m8017ml.ws-us105.gitpod.io/blogs");
+                    mutate("http://localhost:8000/blogs");
                 } 
             });
 

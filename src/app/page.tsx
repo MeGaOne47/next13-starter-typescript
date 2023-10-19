@@ -12,33 +12,31 @@ import Register from './register/page'
 
 export default function Home() {
 
-  const fetcher = (url: string) => fetch(url)
-    .then((res) => res.json());
+  // const fetcher = (url: string) => fetch(url)
+  //   .then((res) => res.json());
 
-    const { data, error, isLoading } = useSWR(
-      "https://8000-megaone47-backendfakejs-1ls4m8017ml.ws-us105.gitpod.io/blogs",
-      fetcher,
-      {
-        revalidateIfStale: false,
-        revalidateOnFocus: false,
-        revalidateOnReconnect: false
-      }
-    );
-    if (!data) {
-      return (
-          <div>
-              {/* <Login/> */}
-              {/* <Register/> */}
-              loading AppTable...
-          </div>
-      )  
-    }
+    // const { data, error, isLoading } = useSWR(
+    //   "http://localhost:8000/blogs",
+    //   fetcher,
+    //   {
+    //     revalidateIfStale: false,
+    //     revalidateOnFocus: false,
+    //     revalidateOnReconnect: false
+    //   }
+    // );
+    // if (isLoading) {
+    //   return (
+    //       <div>
+    //           Loading...
+    //       </div>
+    //   )
+    // }
 
     return (
       <div>
-        <AppTable 
-          blogs={data?.sort((a: any, b: any) => b.id - a.id)}
-        />
+        {/*<AppTable */}
+        {/*  blogs={data?.sort((a: any, b: any) => b.id - a.id) ?? []}*/}
+        {/*/>*/}
       </div>
     )
   }
