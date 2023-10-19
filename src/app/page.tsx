@@ -9,6 +9,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Login from './login/page'
 import Register from './register/page'
+import Button from "react-bootstrap/Button";
 
 export default function Home() {
 
@@ -37,6 +38,30 @@ export default function Home() {
         {/*<AppTable */}
         {/*  blogs={data?.sort((a: any, b: any) => b.id - a.id) ?? []}*/}
         {/*/>*/}
+          <Button variant={"outline-danger"}>
+              <Link href={"/facebook"} className='nav-link'>
+                  Facebook
+              </Link>
+          </Button>
+
+          <Button variant={"outline-info"}>
+              <Link href={"/tiktok"} className='nav-link'>
+                  Tiktok
+              </Link>
+          </Button>
+
+          <Button variant={"outline-secondary"}>
+              <Link href={"/youtube"} className='nav-link'>
+                  Youtube
+              </Link>
+          </Button>
+
+          <Button variant={"outline-secondary"}>
+              <Link href={"/twitter"} className='nav-link'>
+                  Twitter
+              </Link>
+          </Button>
+
       </div>
     )
   }
