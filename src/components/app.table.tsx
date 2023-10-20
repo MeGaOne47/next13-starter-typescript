@@ -6,7 +6,8 @@ import CreateModal from './create.modal';
 import { useState } from 'react';
 import UpdateModal from './update.modal';
 import Link from "next/link";
-
+import { toast } from 'react-toastify';
+import { mutate } from "swr"
 
 
 
@@ -19,6 +20,26 @@ function AppTable(props: IProps) {
   const [blog, setBlog] = useState<IBlog | null>(null);
   const [showModalCreate, setShowModalCreate] = useState<boolean>(false); 
   const [showModalUpdate, setShowModalUpdate] = useState<boolean>(false);
+
+  const handleDeleteBlog = (id: number) => {
+    if (confirm(`Do you want to delete this blog (id = ${id})`)) {
+      fetch(`http://localhost:8000/blogs/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+
+        }).then(res => res.json())
+            .then(res => {
+                if (res) {
+                    toast.success("Delete  blog succeed !");
+                    mutate("http://localhost:8000/blogs");
+                } 
+            });
+    } 
+  }
+    
 
   return (
     <>
@@ -61,7 +82,11 @@ function AppTable(props: IProps) {
                           setShowModalUpdate(true);
                       }}
                     >Edit</Button>
-                    <Button variant='danger' className='mx-3'>Delete</Button>
+                    <Button variant='danger' className='mx-3'
+                        onClick={() => {
+                          handleDeleteBlog(item.id);
+                      }}
+                    >Delete</Button>
                   </td>
                 </tr>
               )
