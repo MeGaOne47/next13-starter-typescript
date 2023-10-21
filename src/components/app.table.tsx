@@ -30,13 +30,21 @@ function AppTable(props: IProps) {
                 'Content-Type': 'application/json'
             },
 
-        }).then(res => res.json())
-            .then(res => {
-                if (res) {
-                    toast.success("Delete  blog succeed !");
-                    mutate("http://localhost:8000/blogs");
-                } 
-            });
+        })
+        .then(res => {
+            console.log("Response status:", res.status); // In trạng thái phản hồi
+
+            if (res.status === 200 || res.status === 204) {
+                toast.success("Delete blog succeed !");
+                mutate("http://localhost:8000/blogs");
+            } else {
+                // Xử lý lỗi nếu cần thiết
+                console.error("Delete request failed with status:", res.status);
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
     } 
   }
     
