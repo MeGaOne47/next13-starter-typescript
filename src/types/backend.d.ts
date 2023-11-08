@@ -4,3 +4,10 @@ interface IBlog {
     author: string;
     title: string;
 }
+
+interface IUser {
+    id: number;
+    email: string | null;
+    picture: string | null;
+    username: string | null;
+}
