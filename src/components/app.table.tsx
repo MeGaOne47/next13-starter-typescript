@@ -11,6 +11,7 @@ import { mutate } from "swr"
 
 
 
+
 interface IProps {
   blogs: IBlog[]
 }
@@ -20,6 +21,8 @@ function AppTable(props: IProps) {
   const [blog, setBlog] = useState<IBlog | null>(null);
   const [showModalCreate, setShowModalCreate] = useState<boolean>(false); 
   const [showModalUpdate, setShowModalUpdate] = useState<boolean>(false);
+  const [showViewModal, setShowViewModal] = useState<boolean>(false);
+  const [viewedBlog, setViewedBlog] = useState<IBlog | null>(null);
 
   const handleDeleteBlog = (id: number) => {
     if (confirm(`Do you want to delete this blog (id = ${id})`)) {
@@ -47,7 +50,25 @@ function AppTable(props: IProps) {
         });
     } 
   }
-    
+
+  const handleViewBlog = (id: number) => {
+      fetch(`http://localhost:8000/blogs/${id}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+          }).then(res => res.json())
+          .then(res => {
+              if (res) {
+                  toast.success("View blog succeed !");
+                  setViewedBlog(res);
+                  setShowViewModal(true);
+                  mutate("http://localhost:8000/blogs");
+              } 
+          });
+  }
+
 
   return (
     <>
@@ -65,7 +86,7 @@ function AppTable(props: IProps) {
             <th>No</th>
             <th>Title</th>
             <th>Author</th>
-            {/* <th>Content</th> */}
+            <th>Content</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -76,12 +97,15 @@ function AppTable(props: IProps) {
                   <td>{item.id}</td> 
                   <td>{item.title}</td>
                   <td>{item.author}</td>
-                  {/* <td>{blog.content}</td>    */}
+                  <td>{item.content}</td>   
                   <td>
-                    <Button variant='primary' className='mx-3'>
+                    <Button variant='primary' className='mx-3' >
                         <Link
                             href={`/blogs/${item.id}`}
                             style={{ color: 'white', textDecoration: 'none' }}
+                            onClick={() => {
+                              handleViewBlog(item.id);                             
+                          }}
                         >View</Link>
                     </Button>
                     <Button variant='warning' className='mx-3'
