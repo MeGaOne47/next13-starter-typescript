@@ -12,7 +12,7 @@ function AppHeader() {
     <Navbar expand="lg" className="bg-body-tertiary">
     <Container>
       <Link href="/" className='navbar-brand'>
-        Hỏi Dân IT
+        Blood Donation
       </Link>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
